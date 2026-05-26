@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-cartservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-cartservice
+  template:
+    metadata:
+      labels:
+        app: redis-cartservice
+    spec:
+      containers:
+        - name: redis-cartservice
+          image: "{{ .Values.redis.image }}:{{ .Values.redis.tag }}"
+          ports:
+            - containerPort: {{ .Values.redis.port }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-cartservice
+spec:
+  type: ClusterIP
+  selector:
+    app: redis-cartservice
+  ports:
+    - port: {{ .Values.redis.port }}
+      targetPort: {{ .Values.redis.port }}

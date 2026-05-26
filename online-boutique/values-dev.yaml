@@ -1,0 +1,24 @@
+environment: "development"
+
+frontend:
+  replicaCount: 1
+  image: "gcr.io/google-samples/microservices-demo/frontend"
+  tag: "v0.10.1"
+  port: 8080
+
+productcatalog:
+  replicaCount: 1
+  image: "gcr.io/google-samples/microservices-demo/productcatalogservice"
+  tag: "v0.10.1"
+  port: 3550
+
+cartservice:
+  replicaCount: 1
+  image: "gcr.io/google-samples/microservices-demo/cartservice"
+  tag: "v0.10.1"
+  port: 7070
+
+redis:
+  image: "redis"
+  tag: "7-alpine"
+  port: 6379

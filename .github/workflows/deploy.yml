@@ -36,7 +36,7 @@ jobs:
       - name: Build Frontend Image
         run: |
           docker build -t ${{ env.ACR_LOGIN_SERVER }}/frontend:${{ env.IMAGE_TAG }} ./src/frontend
-
+          
       - name: Run Trivy vulnerability scanner on Frontend
         uses: aquasecurity/trivy-action@master
         with:
@@ -71,9 +71,9 @@ jobs:
 
       - name: Deploy via Helm (Staging)
         run: |
-          helm upgrade --install online-boutique ./helm-chart/online-boutique \
+          helm upgrade --install online-boutique ./online-boutique \
             --namespace staging --create-namespace \
-            -f ./helm-chart/online-boutique/values-dev.yaml \
+            -f ./online-boutique/values-dev.yaml \
             --set frontend.image=${{ env.ACR_LOGIN_SERVER }}/frontend \
             --set frontend.tag=${{ env.IMAGE_TAG }} \
             --wait --timeout 5m

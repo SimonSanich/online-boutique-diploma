@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productcatalogservice
+spec:
+  replicas: {{ .Values.productcatalog.replicaCount }}
+  selector:
+    matchLabels:
+      app: productcatalogservice
+  template:
+    metadata:
+      labels:
+        app: productcatalogservice
+    spec:
+      containers:
+        - name: server
+          image: "{{ .Values.productcatalog.image }}:{{ .Values.productcatalog.tag }}"
+          ports:
+            - containerPort: {{ .Values.productcatalog.port }}
+          env:
+            - name: PORT
+              value: "{{ .Values.productcatalog.port }}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: productcatalogservice
+spec:
+  type: ClusterIP
+  selector:
+    app: productcatalogservice
+  ports:
+    - port: {{ .Values.productcatalog.port }}
+      targetPort: {{ .Values.productcatalog.port }}

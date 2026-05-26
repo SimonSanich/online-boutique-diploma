@@ -1,0 +1,7 @@
+﻿{
+  "name": "github-actions-staging",
+  "issuer": "https://token.actions.githubusercontent.com",
+  "subject": "repo:SimonSanich/online-boutique-diploma:environment:staging",
+  "description": "GitHub Actions OIDC for Staging Environment",
+  "audiences": ["api://AzureADTokenExchange"]
+}
