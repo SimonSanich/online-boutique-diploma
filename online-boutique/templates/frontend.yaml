@@ -24,7 +24,7 @@ spec:
               value: "productcatalogservice:{{ .Values.productcatalog.port }}"
             - name: CART_SERVICE_ADDR
               value: "cartservice:{{ .Values.cartservice.port }}"
-            #I DONT CARE AT ALL FUCK THOSE MICROSERVISES
+            #we dont need those services for frontend, but we need to set them to avoid errors in logs
             - name: CURRENCY_SERVICE_ADDR
               value: "localhost:9999"
             - name: RECOMMENDATION_SERVICE_ADDR
@@ -43,7 +43,7 @@ kind: Service
 metadata:
   name: frontend
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: frontend
   ports:
