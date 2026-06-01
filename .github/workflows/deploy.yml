@@ -42,7 +42,7 @@ jobs:
         with:
           image-ref: '${{ env.ACR_LOGIN_SERVER }}/frontend:${{ env.IMAGE_TAG }}'
           format: 'table'
-          exit-code: '0' 
+          exit-code: '1' 
           severity: 'CRITICAL,HIGH'
 
       - name: Push Frontend Image
