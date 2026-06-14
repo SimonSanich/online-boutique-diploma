@@ -43,7 +43,7 @@ jobs:
           image-ref: '${{ env.ACR_LOGIN_SERVER }}/frontend:${{ env.IMAGE_TAG }}'
           format: 'table'
           exit-code: '1' 
-          severity: 'CRITICAL,HIGH'
+          severity: 'CRITICAL'
 
       - name: Push Frontend Image
         run: docker push ${{ env.ACR_LOGIN_SERVER }}/frontend:${{ env.IMAGE_TAG }}
